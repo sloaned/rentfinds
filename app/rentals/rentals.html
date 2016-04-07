@@ -1,0 +1,54 @@
+<div ng-controller="RentalsCtrl">
+	{{test}}
+	<header>
+		<h1>RentFinds</h1>
+		<p>
+			Apartment Finder
+		</p>
+		<div class="row">
+			<div class="large-12 columns">
+				<form ng-submit="searchRentals()">
+					<input type="text" name="city" ng-model="city" placeholder="Enter a City..." required>
+
+					<input type="submit" name="submit" value="FIND" class="button">
+					<a href="/app/#add" class="button warning">Add listing</a>
+				</form>	
+			</div>
+		</div>
+	</header>
+
+	<div data-alert class="alert-box success" ng-show="msg">{{msg}}</div>
+
+	<div ng-show="showLatest">
+		<h3 class="page-heading">Latest Rentals</h3>
+		<div class="row rental" ng-repeat="rental in rentals">
+			<div class="small-4 columns">
+				<img src="{{rental.image_url}}">
+			</div>
+			<div class="small-8 columns">
+				<div class="label">
+					{{rental.city}}
+				</div>
+				<h3><a href="/app/#details/{{rental.$id}}">{{rental.title}}</a></h3>
+				<p>{{rental.phone}}</p>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="showResults">
+		<h3 class="page-heading">Rentals in {{city}}</h3>
+		<a ng-click="refresh()" class="button tiny back">Back to Listings</a>
+		<div class="row rental" ng-repeat="rental in rentals">
+			<div class="small-4 columns">
+				<img src="{{rental.image_url}}">
+			</div>
+			<div class="small-8 columns">
+				<div class="label">
+					{{rental.city}}
+				</div>
+				<h3><a href="/app/#details/{{rental.$id}}">{{rental.title}}</a></h3>
+				<p>{{rental.phone}}</p>
+			</div>
+		</div>
+	</div>
+</div>
